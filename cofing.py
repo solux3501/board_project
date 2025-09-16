@@ -1,33 +1,9 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "e15e86c3-f3fa-4220-97a6-ae73124fe12a",
-   "metadata": {},
-   "outputs": [],
-   "source": []
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python [conda env:base] *",
-   "language": "python",
-   "name": "conda-base-py"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.13.5"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
+import os
+basedir = os.path.abspath(os.path.dirname(__file__)
+
+
+class Config :
+ SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-me'
+ SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+  'sqlite:///' + os.path.join(basedir, 'app.db')
+ SQLALCHEMY_TRACK_MODIFICATION = False

@@ -36,3 +36,4 @@ class Comment(db.Model) :
     created_At = db.Column(db.DateTime, default = datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeginKey('user.id'))
     post_id = db.Column(db.Integer, db.ForeginKey('post.id'))
+    # test

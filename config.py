@@ -4,6 +4,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))  # 현재 경로 -> 절대 
 
 class Config :
  SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-me'  # key : 비밀키가 있으면 전자, 아니면 후자
- SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \  # DATABASE 경로 : 있으면 전자, 없으면 후자
-  'sqlite:///' + os.path.join(basedir, 'app.db')
+ SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+  'sqlite:///' + os.path.join(basedir, 'app.db')  # DATABASE 경로 : 있으면 전자, 없으면 후자
  SQLALCHEMY_TRACK_MODIFICATION = False  # 그냥 필요 없는 기능이라 생각

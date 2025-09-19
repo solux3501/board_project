@@ -19,7 +19,7 @@ def create_app(config_class = Config) :  # create_app : Flask 앱을 생성하�
     migrate.init_app(app, db)  # flask와 마이그레이션 연결
     login.init_app(app)  # flask와 로그인 관리자 연결
 
-    from app.route import bp as main_bp  # app.route 모듈에서 bp라는 객체를 가져와 main_bp라 칭함
+    from app.routes import bp as main_bp  # app.route 모듈에서 bp라는 객체를 가져와 main_bp라 칭함
     app.register_blueprint(main_bp)  # flask 앱에 라우트 등록. 앱에서 URL 주소와 지금 내가 만든 함수를 연결하는 것을 칭함
 
     return app

@@ -1,18 +1,19 @@
-< 파일 구조 >
-project_name/
-│── venv/                # 가상환경
-│── app/                 # Flask 애플리케이션 코드 / 프로젝트를 시작하는 중심. Flask 앱 객체를 여기서 실행.
-
-│    ├── __init__.py     # Flask 앱 생성 및 확장 초기화
-│    ├── routes.py       # 라우트(페이지) 관리
-│    └── models.py       # DB 모델 (ORM 쓸 때)
-│
-│── templates/           # HTML 파일 / HTML을 자동으로 여기서 찾아 렌더링. (render_template 함수)
-│    └── index.html
-│
-│── static/              # CSS, JS, 이미지 / 정적 파일은 여기 두면 Flask가 자동으로 서빙
-│
-│── config.py            # 환경설정 (Config 클래스)
-│── app.py               # 실행 진입점
-│── requirements.txt  # 협업할 때 같은 패키지 환경을 쉽게 맞춤. (pip install -r requirements.txt)
-│── .env                 # (선택) 비밀키, DB URL 등 / 따로 관리 → 보안 강화.
+<!doctype html>
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <title>간단 게시판</title>
+  </head>
+  <body>
+    <h1>Flask 게시판 - 메인</h1>
+    {% if posts %}
+      <ul>
+      {% for post in posts %}
+        <li><strong>{{post.title}}</strong>-{{post.created_at}}</li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>등록된 글이 없습니다.</p>
+    {% endif %}
+  </body>
+</html>

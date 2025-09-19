@@ -27,13 +27,13 @@ class Post(db.Model) :
     content = db.Column(db.Text, nullable = False)
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
     updated_at = db.Column(db.DateTime, onupdate = datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeginKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     comments = db.relationship('Comment', backref = 'post', lazy = 'dynamic')
 
 class Comment(db.Model) :
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.Text,nullable = False)
     created_At = db.Column(db.DateTime, default = datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeginKey('user.id'))
-    post_id = db.Column(db.Integer, db.ForeginKey('post.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     # learn_plask. 0918

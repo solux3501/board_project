@@ -1,7 +1,7 @@
 <!--필드오류-->
 {% if form.errors %}
 <div class="alert alert-danger" role="alert">
-  {% for field, errors in form.error.items() %}
+  {% for field, errors in form.errors.items() %}
   <strong>{{form[field].label}}</strong>
   <ul>
     {% for error in errors %}

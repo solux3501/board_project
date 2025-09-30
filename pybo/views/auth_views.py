@@ -38,10 +38,11 @@ def login():
         if error is None:
             session.clear()
             session['user_id']=user.id
-
-            
-
-            return redirect(url_for('main.index'))
+            _next = request.args.get('next', '')
+            if _next:
+                return redirect(_next)
+            else:
+                return redirect(url_for('main.index'))
         flash(error)
     return render_template('auth/login.html', form=form)
 

@@ -11,7 +11,7 @@
     <h2 class="border-bottom py-2">{{ question.subject }}</h2>
     <div class="card my-3">
         <div class="card-body">
-            <div class="card-text" style="white-space: pre-line;">{{ question.content }}</div>
+            <div class="card-text">{{ question.content|markdown|safe }}</div>
             <div class="d-flex justify-content-end">
                 {% if question.modify_date %}
                 <div class="badge bg-light text-dark p-2 text-start mx-3">
@@ -41,9 +41,10 @@
     <!-- 답변 목록 -->
     <h5 class="border-bottom my-3 py-2">{{ question.answer_set|length }}개의 답변이 있습니다.</h5>
     {% for answer in question.answer_set %}
+    <a id="answer_{{answer.id}}"></a>
     <div class="card my-3">
         <div class="card-body">
-            <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
+            <div class="card-text">{{ answer.content|markdown|safe }}</div>
             <div class="d-flex justify-content-end">
                 {% if answer.modify_date %}
                 <div class="badge bg-light text-dark p-2 text-start mx-3">
@@ -58,6 +59,10 @@
         </div>
     </div>
     <div class="my-3">
+        <a href="javascript:void(0)" data-uri="{{url_for('answer.vote', answer_id=answer.id)}}"
+           class="recommend btn btn-sm btn-outline-secondary">추천
+            <span class="badge rounded-pill bg-success">{{answer.voter|length}}</span>
+        </a>
         {% if g.user == answer.user %}
         <a href="{{url_for('answer.modify', answer_id=answer.id)}}"
            class="btn btn-sm btn-outline-secondary">수정</a>
@@ -103,11 +108,11 @@ Array.from(delete_elements).forEach(function(element) {
 });
 const recommend_elements = document.getElementsByClassName("recommend");
 Array.from(recommend_elements).forEach(function(element){
-    element.addEventListener('click', function(){
-        if(confirm("정말로 추천하시겠습니까?")) {
+    element.addEventListener('click', function() {
+        if (confirm("정말로 추천하시겠습니까?")) {
             location.href = this.dataset.uri;
         };
-    };
-};
+    });
+});
 </script>
 {% endblock %}

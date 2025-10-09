@@ -10,6 +10,8 @@ from ..forms import QuestionForm, AnswerForm
 from pybo.views.auth_views import login_required
 
 bp = Blueprint('question', __name__, url_prefix='/question')
+# 해당 파일의 bp명은 'question'
+# 또한 '/question'으로 시작하는 URL은 해당 bp에서 처리
 
 @bp.route('/list/')
 def _list():
